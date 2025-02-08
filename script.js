@@ -15,39 +15,46 @@ const messages = [
   "Vadhuluthana enti, yes chepochuga! ❤"
 ];
 
-noBtn.addEventListener('mouseover', () => {
+function changeNoButtonText() {
+  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+  noBtn.textContent = randomMessage;
+}
+
+function moveNoButton() {
   const containerRect = document.querySelector('.container').getBoundingClientRect();
-  const gifRect = gif.getBoundingClientRect();
+  const buttonRect = noBtn.getBoundingClientRect();
 
-  const safeArea = {
-    top: containerRect.top,
-    bottom: gifRect.top - noBtn.offsetHeight,
-    left: containerRect.left,
-    right: containerRect.right - noBtn.offsetWidth
-  };
+  const maxX = containerRect.width - buttonRect.width;
+  const maxY = containerRect.height - buttonRect.height;
 
-  const randomX = Math.floor(Math.random() * (safeArea.right - safeArea.left)) + safeArea.left;
-  const randomY = Math.floor(Math.random() * (safeArea.bottom - safeArea.top)) + safeArea.top;
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
 
   noBtn.style.position = 'absolute';
   noBtn.style.left = `${randomX}px`;
   noBtn.style.top = `${randomY}px`;
+}
 
-  // **Fix: Ensure No Button Text Changes Correctly**
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-  noBtn.textContent = randomMessage;
+noBtn.addEventListener('mouseover', () => {
+  changeNoButtonText();
+  moveNoButton();
+});
 
-  // **Yes Button Expands on Hover**
-  const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-  yesBtn.style.fontSize = `${currentSize * 1.05}px`;
-
-  // **Yes Button Color Changes**
-  const colors = ['#e91e63', '#c2185b', '#ff4081', '#f50057'];
-  const randomColor = colors[Math.floor(Math.random() * colors.length)];
-  yesBtn.style.backgroundColor = randomColor;
+noBtn.addEventListener('touchstart', (event) => {
+  event.preventDefault(); // Prevents weird touch behaviors
+  changeNoButtonText();
+  moveNoButton();
 });
 
 // **Yes Button Click Redirect**
 yesBtn.addEventListener('click', () => {
   window.location.href = 'yes_page.html';
+});
+
+// **No Button Click Pulse Yes Button**
+noBtn.addEventListener('click', () => {
+  yesBtn.classList.add('pulse');
+  setTimeout(() => {
+    yesBtn.classList.remove('pulse');
+  }, 1000); // Duration of the pulse animation
 });
