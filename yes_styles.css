@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe4e6;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  /* **Smooth Page Fade-In** */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .container {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+    position: relative;
+  }
+  
+  /* **Glowing & Bouncing GIF Effect** */
+  .gif_container img {
+    width: 220px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    animation: bounce 1.5s infinite ease-in-out, glow 2s infinite alternate;
+  }
+  
+  /* **Bouncing Animation** */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  
+  /* **Soft Glow Effect** */
+  @keyframes glow {
+    from { box-shadow: 0 0 15px rgba(255, 105, 180, 0.5); }
+    to { box-shadow: 0 0 25px rgba(255, 20, 147, 0.8); }
+  }
+  
+  /* **"I LOVE YOU" Pulsing Glow Effect** */
+  p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e91e63;
+    text-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  /* **Pulsing Animation for Text** */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); text-shadow: 0 0 10px rgba(233, 30, 99, 0.5); }
+    50% { transform: scale(1.1); text-shadow: 0 0 20px rgba(233, 30, 99, 0.8); }
+  }
+  
