@@ -138,3 +138,6 @@ p {
 h1 {
     font-size: clamp(1.5rem, 5vw, 2.5rem); /* Adjusts automatically */
 }
+.pulse {
+  animation: pulse 1s infinite;
+}
